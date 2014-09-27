@@ -10,7 +10,7 @@ class LazyCalculator
     @numbers << value
     @operations << :+
 
-    self.class.new numbers: @numbers, operations: @operations
+    build_new_instance
   end
 
   def minus(value)
@@ -20,5 +20,11 @@ class LazyCalculator
   end
 
   def division(value)
+  end
+
+  private
+
+  def build_new_instance
+    self.class.new numbers: @numbers, operations: @operations
   end
 end
