@@ -4,6 +4,7 @@ require_relative "lazy_calculator"
 class TestLazyCalculator < Minitest::Test
   def setup
     @lazy_calculator = LazyCalculator.new
+    @complex_calculator = LazyCalculator.new.plus(13).minus(3).minus(5).plus(1)
   end
 
   def test_lazy_calculator_kind_of
@@ -32,9 +33,11 @@ class TestLazyCalculator < Minitest::Test
   end
 
   def test_minus_and_plus_methods_works_together
-    output = @lazy_calculator.plus(13).minus(3).minus(5).plus(1)
+    assert_equal [13, 3, 5, 1], @complex_calculator.numbers
+    assert_equal [:+, :-, :-, :+], @complex_calculator.operations
+  end
 
-    assert_equal [13, 3, 5, 1], output.numbers
-    assert_equal [:+, :-, :-, :+], output.operations
+  def test_calc
+    assert_equal 6, @complex_calculator.calc
   end
 end
