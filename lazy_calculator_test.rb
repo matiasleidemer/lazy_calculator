@@ -30,4 +30,11 @@ class TestLazyCalculator < Minitest::Test
     assert_equal [15], output.numbers
     assert_equal [:-], output.operations
   end
+
+  def test_minus_and_plus_methods_works_together
+    output = @lazy_calculator.plus(13).minus(3).minus(5).plus(1)
+
+    assert_equal [13, 3, 5, 1], output.numbers
+    assert_equal [:+, :-, :-, :+], output.operations
+  end
 end
