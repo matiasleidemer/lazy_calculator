@@ -7,6 +7,10 @@ class LazyCalculator
   end
 
   def plus(value)
+    @numbers << value
+    @operations << :+
+
+    self.class.new numbers: @numbers, operations: @operations
   end
 
   def minus(value)
