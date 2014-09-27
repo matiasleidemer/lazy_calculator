@@ -14,6 +14,10 @@ class LazyCalculator
   end
 
   def minus(value)
+    @numbers << value
+    @operations << :-
+
+    build_new_instance
   end
 
   def times(value)

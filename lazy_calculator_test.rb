@@ -22,4 +22,12 @@ class TestLazyCalculator < Minitest::Test
     assert_equal [2], output.numbers
     assert_equal [:+], output.operations
   end
+
+  def test_minus_method_returns_a_new_instance_with_attributes
+    output = @lazy_calculator.minus 15
+
+    assert_kind_of LazyCalculator, output
+    assert_equal [15], output.numbers
+    assert_equal [:-], output.operations
+  end
 end
