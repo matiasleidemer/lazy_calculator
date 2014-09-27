@@ -20,12 +20,6 @@ class LazyCalculator
     build_new_instance
   end
 
-  def times(value)
-  end
-
-  def division(value)
-  end
-
   private
 
   def build_new_instance
