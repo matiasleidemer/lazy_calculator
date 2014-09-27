@@ -4,7 +4,6 @@ class LazyCalculator
   def initialize(opts={})
     @numbers = opts.fetch :numbers, []
     @operations = opts.fetch :operations, []
-    @result = opts.fetch :result, 0
   end
 
   def plus(value)
@@ -24,11 +23,13 @@ class LazyCalculator
   def calc
     return 0 if @numbers.size == 0
 
+    result = 0
+
     calc_structure.each do |number, operation|
-      @result = @result.send operation, number
+      result = result.send operation, number
     end
 
-    @result
+    result
   end
 
   private
