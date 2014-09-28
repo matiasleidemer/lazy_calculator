@@ -10,14 +10,14 @@ class LazyCalculator
     @numbers << value
     @operations << :+
 
-    build_new_instance
+    self
   end
 
   def minus(value)
     @numbers << value
     @operations << :-
 
-    build_new_instance
+    self
   end
 
   def calc
@@ -33,10 +33,6 @@ class LazyCalculator
   end
 
   private
-
-  def build_new_instance
-    self.class.new numbers: @numbers, operations: @operations
-  end
 
   def calc_structure
     Hash[@numbers.zip @operations]
