@@ -15,25 +15,24 @@ calculator = LazyCalculator.new
 => #<LazyCalculator:0x007fbbe31a7ee8 @numbers=[], @operations=[]>
 
 calculator.plus(5)
-=> #<LazyCalculator:0x007fcc24885098 @numbers=[5], @operations=[:+]>
+=> #<LazyCalculator:0x007fbbe31a7ee8 @numbers=[5], @operations=[:+]>
 
 calculator.minus(2)
-=> #<LazyCalculator:0x007fcc2488df18 @numbers=[5, 2], @operations=[:+, :-]>
+=> #<LazyCalculator:0x007fbbe31a7ee8 @numbers=[5, 2], @operations=[:+, :-]>
 
 irb(main):006:0> calculator.calc
 => 3
 ```
 
-Obviamente a complexidade da LazyCalculator nem se compara com a do ActiveRecord. Mas acho que a idéia fica bem clara nos exemplos acima. Observe que os métodos `plus` e `minus` retornam novas instâncias da própria LazyCalculator. Isso possibilita o encadeamento (method chaining) de vários métodos:
+Obviamente a complexidade da LazyCalculator nem se compara com a do ActiveRecord. Mas acho que a idéia fica bem clara nos exemplos acima. Observe que os métodos `plus` e `minus` retornam a instância do própria objeto. Isso possibilita o encadeamento de vários métodos (method chaining):
 
 ```ruby
 calculator = LazyCalculator.new
 
-calculator.plus(5).minus(1).minus(9).plus(1).calc 
+calculator.plus(5).minus(1).minus(9).plus(1).calc
 => -3
 ```
 
-Também fica bem claro como o método `calc` é postergado até o momento em que é realmente necessário. Quando executado, ele verifica os valores e operações que já existem no objeto atual e realiza o cálculo. 
+Também fica bem claro como o método `calc` é postergado até o momento em que é realmente necessário. Quando executado, ele verifica os valores e operações que já existem no objeto atual e realiza o cálculo.
 
 Eu já havia observado esse comportamento no ActiveRecord, mas ainda não havia tirado um tempo para dar uma olhada com mais calma. Esse tipo de solução me agrada, simples e efetiva, utilize em seu código sempre que parecer conveniente.
-
