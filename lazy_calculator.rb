@@ -21,15 +21,9 @@ class LazyCalculator
   end
 
   def calc
-    return 0 if @numbers.size == 0
-
-    result = 0
-
-    calc_structure.each do |number, operation|
-      result = result.send operation, number
+    calc_structure.inject(0) do |result, (number, operation)|
+      result.send operation, number
     end
-
-    result
   end
 
   private

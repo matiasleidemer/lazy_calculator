@@ -40,4 +40,8 @@ class TestLazyCalculator < Minitest::Test
   def test_calc
     assert_equal 6, @complex_calculator.calc
   end
+
+  def test_calc_with_no_operations
+    assert_equal 0, @lazy_calculator.calc
+  end
 end
